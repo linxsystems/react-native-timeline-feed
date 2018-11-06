@@ -225,7 +225,7 @@ class Timeline extends React.Component<Props, State> {
       return renderEvent({ item, index });
     }
 
-    const {
+    let {
       columnFormat = defaultColumnFormat,
       lineWidth = item.lineWidth || defaultLineWidth,
       renderFullLine,
@@ -233,11 +233,10 @@ class Timeline extends React.Component<Props, State> {
       lineColor = item.lineColor || defaultLineColor
     } = this.props;
 
-    const isLast = renderFullLine
-      ? !renderFullLine
-      : data.slice(-1)[0] === item;
+    const isLast = index === data.length-1;
 
     const borderColor = isLast ? "transparent" : lineColor;
+    lineColor = isLast ? "transparent" : lineColor;
 
     let opStyle = null;
 
